@@ -20,10 +20,22 @@ namespace DravenCareca
 
         static void Main(string[] args) => new Program().RunBot().GetAwaiter().GetResult();
 
+        private async Task MessageReceived(SocketMessage message)
+        {
+            if (message.Content == "!hi")
+            {
+                await message.Channel.SendMessageAsync("Hello!");
+            }
+        }
+
         // Runbot task
         public async Task RunBot()
         {
-            _client = new DiscordSocketClient();
+            var configDisc = new DiscordSocketConfig()
+            {
+                GatewayIntents = GatewayIntents.All
+            };
+            _client = new DiscordSocketClient(configDisc);
             _commands = new CommandService();
             _services = new ServiceCollection().AddSingleton(_client).AddSingleton(_commands).BuildServiceProvider();
 

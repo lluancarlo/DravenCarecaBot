@@ -11,6 +11,7 @@ namespace DravenCareca.Services
         private readonly string fala_tenho_melhor_trabalho = "../../../src/tenho_melhor_trabalho.mp3";
         private readonly string fala_draven_faz_tudo_com_estilo = "../../../src/draven_faz_tudo_com_estilo.mp3";
         private readonly string fala_nao_e_draven = "../../../src/nao_e_draven.mp3";
+        private readonly string fala_ai_preto = "../../../src/ai_preto_draven.mp3";
 
         public async Task AudioAjuda(IAudioClient audioClient)
         {
@@ -30,6 +31,11 @@ namespace DravenCareca.Services
         public async Task AudioDraven(IAudioClient audioClient)
         {
             await Speak(audioClient, fala_nao_e_draven);
+        }
+
+        public async Task AudioAiPreto(IAudioClient audioClient)
+        {
+            await Speak(audioClient, fala_ai_preto);
         }
 
         private async Task Speak(IAudioClient audioClient, string sound)
